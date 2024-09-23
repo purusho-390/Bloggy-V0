@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloggy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #5a5a5a;
+            margin-bottom: 30px; 
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .create-post {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            padding: 12px 18px; 
+            background: #28a745;
+            color: white;
+            border-radius: 10px;
+            width: 220px; 
+            transition: background-color 0.3s;
+        }
+        .create-post:hover {
+            background: #218838;
+            text-decoration: none;
+        }
+        .post-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .post-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 15px; 
+            padding: 25px; 
+            flex: 1 1 calc(100% - 30px);
+            transition: transform 0.3s;
+            cursor: default; 
+        }
+        .post-card:hover {
+            transform: scale(1.03); 
+        }
+        .post-title {
+            font-size: 1.4em; 
+            margin-bottom: 12px; 
+            font-weight: bold;
+            color: #333;
+        }
+        .post-content {
+            font-size: 0.95em; 
+            margin-bottom: 25px; 
+            color: #666;
+            height: 1.2em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .post-actions {
+            margin-top: 15px; 
+            
+        }
+        .post-actions a {
+            margin-right: 12px;
+            padding: 8px 12px; 
+            border: none;
+            border-radius: 25px;
+            color: white;
+            background: #007bff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .post-actions a:hover {
+            background: #0056b3;
+        }
+    
+        @media (min-width: 600px) {
+            .post-card {
+                flex: 1 1 calc(48% - 30px); 
+            }
+        }
+        @media (min-width: 900px) {
+            .post-card {
+                flex: 1 1 calc(31% - 30px); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bloggy 🖐️ </h1>
+        <a href="{% url 'post_create' %}" class="create-post">Create New Post</a>
+        <ul class="post-list">
+            {% for post in posts %}
+                <li class="post-card">
+                    <div class="post-title">
+                        {{ post.title }}
+                    </div>
+                    <div class="post-content">
+                        {{ post.content|truncatewords:15 }}
+                    </div>
+                    <div class="post-actions">
+                        <a href="{% url 'post_detail' post.slug %}">Read More</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li>No posts available.😶‍🌫️ , Let's create some 😎 </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+/media
+/staticfiles
+
+# Environment variables
+.myenv
+
+# VS Code
+.vscode/
+
+# IDEs
+.idea/
+*.swp
+*.swo
+
+# Coverage reports
+htmlcov/
+.coverage
+
+# Migrations
+*/migrations/__init__.py
+*/migrations/*.py
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Python virtual environments
+venv/
+ENV/
+env/
+myenv/
+.venv/
+env.bak/
+venv.bak/
+
+# Cache
+.cache/
