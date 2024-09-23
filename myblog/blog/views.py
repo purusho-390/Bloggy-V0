@@ -51,14 +51,13 @@ def post_update(request, slug):
 #DELETE
 def post_delete(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    if request.user != post.author:
-        return redirect('post_detail', slug=post.slug)
 
     if request.method == 'POST':
         post.delete()
         return redirect('post_list')
     
     return render(request, 'blog/post_confirm_delete.html', {'post': post})
+
 
 # API ViewSet
 class PostViewSet(viewsets.ModelViewSet):
